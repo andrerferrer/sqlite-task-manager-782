@@ -12,7 +12,7 @@ DB.results_as_hash = true
 # DB initialized
 
 # Restart the DB
-DB.execute('DROP TABLE tasks');
+DB.execute('DROP TABLE IF EXISTS tasks');
 DB.execute('CREATE TABLE tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, done INTEGER DEFAULT (0));');
 DB.execute("INSERT INTO tasks (title, description) VALUES ('Complete Livecode', 'Implement CRUD on Task');");
 
