@@ -3,15 +3,18 @@
 # 2nd write the code and make it pass
 # 3rd refactor
 
-
+# Require the Task class
+require_relative "task"
 # Initializing the DB
 require "sqlite3"
 DB = SQLite3::Database.new("tasks.db")
 DB.results_as_hash = true
 # DB initialized
 
-# Require the Task class
-require_relative "task"
+# Restart the DB
+DB.execute('DROP TABLE tasks');
+DB.execute('CREATE TABLE tasks (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, done INTEGER DEFAULT (0));');
+DB.execute("INSERT INTO tasks (title, description) VALUES ('Complete Livecode', 'Implement CRUD on Task');");
 
 # Implement the READ logic to find a given task (by its id)
 first_task = Task.find(1)
